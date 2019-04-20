@@ -4,7 +4,3 @@
 
 [node name="Player" type="Area2D" parent="."]
 
-[node name="Room" type="RigidBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Room"]
-
