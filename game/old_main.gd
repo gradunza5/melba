@@ -15,9 +15,7 @@ var path #AStar pathfinding object
 
 func _ready(): 
 	randomize()
-	Map.Dimensions = get_viewport().size
-	Map.init_map()
-	#make_rooms()
+	make_rooms()
 	
 func make_rooms(): 
 	for i in range(num_rooms):
@@ -46,7 +44,6 @@ func make_rooms():
 func _draw():
 	for room in $Rooms.get_children():
 		draw_rect(Rect2(room.position - room.size, room.size * 2), Color(32, 228, 0), false)
-		draw_line(Vector2(0, 0), room.position, Color.blueviolet, 10, true)
 	
 #	if path:
 #		for p in path.get_points():
