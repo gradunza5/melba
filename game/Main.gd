@@ -9,7 +9,7 @@ var min_size = 4
 var max_size = 10
 var vspread = 200
 var hspread = 400
-var cull = 0.5 # percent
+var cull = 0.75 # percent
 
 var path #AStar pathfinding object
 
@@ -45,18 +45,19 @@ func _draw():
 	for room in $Rooms.get_children():
 		draw_rect(Rect2(room.position - room.size, room.size * 2), Color(32, 228, 0), false)
 	
-	if path:
-		for p in path.get_points():
-			for c in path.get_point_connections(p):
-				var pp = path.get_point_position(p)
-				var cp = path.get_point_position(c)
-				draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(1, 1, 0), 15, true)
+#	if path:
+#		for p in path.get_points():
+#			for c in path.get_point_connections(p):
+#				var pp = path.get_point_position(p)
+#				var cp = path.get_point_position(c)
+#				draw_line(Vector2(pp.x, pp.y), Vector2(cp.x, cp.y), Color(1, 1, 0), 15, true)
 
 func _process(delta):
 	update()
 
 func _input(event):
 	if event.is_action_pressed('ui_select'):
+		Map.clear()
 		for n in $Rooms.get_children():
 			n.queue_free()
 		path = null
@@ -114,7 +115,7 @@ func make_map():
 	var corridors = [] # One corridor per connection
 	for room in $Rooms.get_children():
 		var s = (room.size / tile_size).floor()
-		var pos = Map.world_to_map(room.position)
+		#var pos = Map.world_to_map(room.position)
 		var ul = (room.position / tile_size).floor() - s
 		for x in range (1, s.x * 2):
 			for y in range (1, s.y * 2):
