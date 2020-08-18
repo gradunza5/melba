@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entities/player/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://entities/enemies/bubble/bubble.tscn" type="PackedScene" id=2]
+[ext_resource path="res://world/maps/debug_map.tscn" type="PackedScene" id=3]
+
+[node name="Node" type="Node2D"]
+
+[node name="DebugMap" parent="." instance=ExtResource( 3 )]
+
+[node name="Bubble" parent="DebugMap" instance=ExtResource( 2 )]
+position = Vector2( 187.658, 81.3784 )
+
+[node name="Player" parent="DebugMap" instance=ExtResource( 1 )]
+position = Vector2( 144.443, 74.9784 )
+speed = 75
+
+[node name="Camera2D" type="Camera2D" parent="DebugMap/Player"]
+current = true
+zoom = Vector2( 0.25, 0.25 )
