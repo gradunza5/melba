@@ -11,28 +11,30 @@ __meta__ = {
 }
 
 [node name="LifeBar" type="ColorRect" parent="."]
-margin_right = 72.0
-margin_bottom = 6.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 512.0
+margin_bottom = 48.0
 color = Color( 1, 0.843137, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="EmptyBar" type="ColorRect" parent="LifeBar"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 71.0
-margin_bottom = 5.0
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 488.0
+margin_bottom = 28.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="FullBar" type="ColorRect" parent="LifeBar"]
-margin_left = 1.0
-margin_top = 1.0
-margin_right = 71.0
-margin_bottom = 5.0
+margin_left = 8.0
+margin_top = 5.0
+margin_right = 488.0
+margin_bottom = 28.0
 color = Color( 0.945098, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
