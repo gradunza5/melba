@@ -2,13 +2,17 @@ extends KinematicBody2D
 class_name Player
 
 # int, int
-signal hp_changed(current, maximum)
+signal health_changed(current, maximum)
 
-export (int) var max_hp = 100
-export (int) var hp = max_hp
-export (int) var speed = 200
+export (int) var health_max = 100
+export (int) var health     = health_max
+export (int) var speed      = 200
 
 var velocity = Vector2()
+
+func damage(points: int) -> void:
+	health -= points
+	emit_signal("health_changed", health, health_max)
 
 # Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
@@ -20,10 +24,10 @@ var velocity = Vector2()
 
 # Handles persistent inputs such as movement
 func _physics_process(delta: float) -> void:
-	handle_move_input()
+	_handle_move_input_()
 	velocity = move_and_slide(velocity)
 
-func handle_move_input() -> void:
+func _handle_move_input_() -> void:
 	velocity = Vector2()
 	if Input.is_action_pressed("ui_left"):
 		velocity.x -= 1
@@ -34,10 +38,6 @@ func handle_move_input() -> void:
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 	velocity = velocity.normalized() * speed
-
-func damage(points: int) -> void:
-	hp -= points
-	emit_signal("hp_changed", hp, max_hp)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:

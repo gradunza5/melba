@@ -11,7 +11,7 @@ script = ExtResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" parent="CanvasLayer" instance=ExtResource( 5 )]
+[node name="PlayerHud" parent="CanvasLayer" instance=ExtResource( 5 )]
 
 [node name="DebugMap" parent="." instance=ExtResource( 3 )]
 
