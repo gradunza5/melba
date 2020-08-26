@@ -19,6 +19,13 @@ config/name="melba"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
 
+[input]
+
+ui_zoom={
+"deadzone": 0.5,
+"events": [  ]
+}
+
 [physics]
 
 2d/default_gravity=0

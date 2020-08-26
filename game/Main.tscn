@@ -19,6 +19,5 @@ show_behind_parent = true
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 786468, 0, 0 )
 script = ExtResource( 3 )
 
