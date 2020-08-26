@@ -15,14 +15,12 @@ script = ExtResource( 4 )
 
 [node name="DebugMap" parent="." instance=ExtResource( 3 )]
 
-[node name="Bubble" parent="DebugMap" instance=ExtResource( 2 )]
-position = Vector2( 331.658, 225.378 )
-
 [node name="Player" parent="DebugMap" instance=ExtResource( 1 )]
-position = Vector2( 288.443, 218.978 )
-speed = 75
+position = Vector2( 312, 224 )
 
 [node name="Camera2D" type="Camera2D" parent="DebugMap/Player"]
-position = Vector2( -0.442993, -2.97839 )
 current = true
 zoom = Vector2( 0.25, 0.25 )
+
+[node name="Bubble" parent="DebugMap" instance=ExtResource( 2 )]
+position = Vector2( 384, 232 )
