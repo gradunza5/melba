@@ -1,21 +1,20 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://entities/entity.tscn" type="PackedScene" id=1]
-[ext_resource path="res://entities/player/player_spriteframes.tres" type="SpriteFrames" id=2]
-[ext_resource path="res://entities/player/player.gd" type="Script" id=3]
+[ext_resource path="res://characters/character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://characters/player/player_spriteframes.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://characters/player/Player.cs" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.95518, 6.98066 )
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
-health_max = 100
-health = 100
-speed = 100
+HealthMax = 100
+Speed = 100
+InvincibilitySeconds = 0.3
 
 [node name="AnimatedSprite" parent="." index="0"]
 frames = ExtResource( 2 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" parent="." index="1"]

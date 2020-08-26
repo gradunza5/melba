@@ -8,39 +8,16 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Entity",
-"class": "Enemy",
-"language": "GDScript",
-"path": "res://entities/enemies/enemy.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "Entity",
-"language": "GDScript",
-"path": "res://entities/entity.gd"
-}, {
-"base": "Entity",
-"class": "Player",
-"language": "GDScript",
-"path": "res://entities/player/player.gd"
-}, {
-"base": "Control",
-"class": "PlayerHud",
-"language": "GDScript",
-"path": "res://gui/hud/player_hud.gd"
-} ]
+_global_script_classes=[  ]
 _global_script_class_icons={
-"Enemy": "",
-"Entity": "",
-"Player": "",
-"PlayerHud": ""
+
 }
 
 [application]
 
 config/name="melba"
 run/main_scene="res://main.tscn"
-config/icon="res://entities/enemies/bubble/bubble.png"
+config/icon="res://characters/enemies/bubble/bubble.png"
 
 [debug]
 
