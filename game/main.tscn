@@ -1,27 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/enemies/bubble/bubble.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world/maps/debug_map.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.cs" type="Script" id=4]
-[ext_resource path="res://gui/hud/player_hud.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PlayerHud" parent="CanvasLayer" instance=ExtResource( 5 )]
-
 [node name="DebugMap" parent="." instance=ExtResource( 3 )]
-
-[node name="Player" parent="DebugMap" instance=ExtResource( 1 )]
-position = Vector2( 304, 216 )
-
-[node name="Camera2D" type="Camera2D" parent="DebugMap/Player"]
-current = true
-zoom = Vector2( 0.25, 0.25 )
 
 [node name="Bubble" parent="DebugMap" instance=ExtResource( 2 )]
 position = Vector2( 384, 224 )
-[connection signal="HealthChanged" from="DebugMap/Player" to="CanvasLayer/PlayerHud" method="SetHealth"]
+
+[node name="Player" parent="DebugMap" instance=ExtResource( 1 )]
+position = Vector2( 304, 216 )

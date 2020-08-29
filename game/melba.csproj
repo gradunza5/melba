@@ -57,11 +57,14 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="characters\enemies\bubble\Bubble.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="characters\Character.cs" />
     <Compile Include="characters\enemies\Enemy.cs" />
     <Compile Include="characters\player\Player.cs" />
-    <Compile Include="gui\hud\PlayerHud.cs" />
+    <Compile Include="gui\hud\Hud.cs" />
+    <Compile Include="script_templates\new_script.cs" />
+    <Compile Include="utility\Vector2Extensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

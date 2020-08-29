@@ -1,58 +1,61 @@
 using Godot;
 using System;
 
-public class Character : KinematicBody2D
+namespace Melba
 {
-    [Signal]
-    public delegate void HealthChanged(int current, int maximum);
-
-    /// Maximum hit points of the character
-    [Export]
-    public int HealthMax { get; set; } = 1;
-
-    /// Hit points of the character, emits HealthChanged when modified
-    [Export]
-    public int Health
+    public class Character : KinematicBody2D
     {
-        get { return _health; }
-        private set
+        [Signal]
+        public delegate void HealthChanged(int current, int maximum);
+
+        /// Maximum hit points of the character
+        [Export]
+        public int HealthMax { get; set; } = 1;
+
+        /// Hit points of the character, emits HealthChanged when modified
+        [Export]
+        public int Health
         {
-            if (_health != value)
+            get { return _health; }
+            private set
             {
-                _health = value;
-                EmitSignal(nameof(HealthChanged), Health, HealthMax);
+                if (_health != value)
+                {
+                    _health = value;
+                    EmitSignal(nameof(HealthChanged), Health, HealthMax);
+                }
             }
         }
-    }
-    private int _health = 0; ///< Leave at 0 to initialize to HealthMax on _Ready
+        private int _health = 0; ///< Leave at 0 to initialize to HealthMax on _Ready
 
-    /// "Relative movement speed of the character"
-    [Export]
-    public int Speed { get; set; } = 50;
+                                 /// "Relative movement speed of the character"
+        [Export]
+        public int Speed { get; set; } = 50;
 
-    public override void _Ready()
-    {
-        if (_health == 0)
+        public override void _Ready()
         {
-            _health = HealthMax;
+            if (_health == 0)
+            {
+                _health = HealthMax;
+            }
         }
-    }
 
-    /// Reduces Health down to a minimum of 0
-    public void Damage(int points)
-    {
-        Health = Math.Max(Health - points, 0);
-    }
+        /// Reduces Health down to a minimum of 0
+        public void Damage(int points)
+        {
+            Health = Math.Max(Health - points, 0);
+        }
 
-    /// Restores Health up to a maximum of HealthMax
-    public void Heal(int points)
-    {
-        OverHeal(points, HealthMax);
-    }
+        /// Restores Health up to a maximum of HealthMax
+        public void Heal(int points)
+        {
+            OverHeal(points, HealthMax);
+        }
 
-    /// Allows healing in excess of player maximum hp, up to an optional maximum
-    public void OverHeal(int points, int maximum = int.MaxValue)
-    {
-        Health = Math.Min(Health + points, maximum);
+        /// Allows healing in excess of player maximum hp, up to an optional maximum
+        public void OverHeal(int points, int maximum = int.MaxValue)
+        {
+            Health = Math.Min(Health + points, maximum);
+        }
     }
 }
