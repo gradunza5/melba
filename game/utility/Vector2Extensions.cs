@@ -10,5 +10,10 @@ namespace Godot
             var rotation = (float)(new Random().NextDouble() * 2 * Mathf.Pi);
             return self.Rotated(rotation);
         }
+
+        public static float UnitVectorSideLength(this Vector2 self)
+        {
+            return 0.7071068f;
+        }
     }
 }

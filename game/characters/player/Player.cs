@@ -6,19 +6,30 @@ namespace Melba
     public class Player : Character
     {
         [Export]
-        public float InvincibilitySeconds;
+        public PackedScene Projectile;
 
-        private float _timeUntilNextHit = 0;
+        private Timer _invincibilityTimer;
+        private bool _isInvincible = false;
+        private Timer _attackCooldownTimer;
+        private bool _canAttack = true;
         private Vector2 _velocity = Vector2.Zero;
-        private const float UNIT_VECTOR_SIDE_LEN = 0.7071068f;
+
+        public override void _Ready()
+        {
+            base._Ready();
+            _invincibilityTimer = GetNode<Timer>("InvincibilityTimer");
+            _attackCooldownTimer = GetNode<Timer>("AttackCooldown");
+        }
 
         public override void _PhysicsProcess(float delta)
         {
+            base._PhysicsProcess(delta);
             var direction = UserInputDirection();
             _velocity = direction * Speed;
             _velocity = MoveAndSlide(_velocity);
             PlayWalkAnimation(_velocity);
-            ApplyDamageFromCollisions(delta);
+            ApplyDamageFromCollisions();
+            PerformAttack();
         }
 
         private static Vector2 UserInputDirection()
@@ -37,10 +48,10 @@ namespace Melba
             if (velocity != Vector2.Zero)
             {
                 var direction = velocity.Normalized();
-                if (direction.y <= -UNIT_VECTOR_SIDE_LEN) { sprite.Play("up"); }
-                else if (direction.x <= -UNIT_VECTOR_SIDE_LEN) { sprite.Play("left"); }
-                else if (direction.x >= UNIT_VECTOR_SIDE_LEN) { sprite.Play("right"); }
-                else { sprite.Play("down"); }
+                if (direction.y <= -velocity.UnitVectorSideLength()) { sprite.Play("up"); }
+                else if (direction.x <= -velocity.UnitVectorSideLength()) { sprite.Play("left"); }
+                else if (direction.x >= velocity.UnitVectorSideLength()) { sprite.Play("right"); }
+                else if (direction.y >= velocity.UnitVectorSideLength()) { sprite.Play("down"); }
             }
             else
             {
@@ -49,19 +60,37 @@ namespace Melba
             }
         }
 
-        private void ApplyDamageFromCollisions(float delta)
+        private void ApplyDamageFromCollisions()
         {
-            _timeUntilNextHit -= delta;
+            if (_isInvincible) { return; }
             for (int i = 0; i < GetSlideCount(); ++i)
             {
                 var collision = GetSlideCollision(i);
                 var enemy = collision.Collider as Enemy;
-                if ((enemy != null) && (_timeUntilNextHit <= 0))
+                if (enemy != null)
                 {
                     Damage(enemy.CollisionDamage);
-                    _timeUntilNextHit = InvincibilitySeconds;
+                    _isInvincible = true;
+                    _invincibilityTimer.Start();
                 }
             }
         }
+
+        private void PerformAttack()
+        {
+            if (!_canAttack) { return; }
+            if (Input.IsActionPressed("ui_select"))
+            {
+                var arrow = (Arrow)Projectile.Instance();
+                GetParent().AddChild(arrow);
+                arrow.Start(this, GetLocalMousePosition());
+
+                _canAttack = false;
+                _attackCooldownTimer.Start();
+            }
+        }
+
+        public void OnInvincibilityTimeout() { _isInvincible = false; }
+        public void OnAttackCooldownTimeout() { _canAttack = true; }
     }
 }

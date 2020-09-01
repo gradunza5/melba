@@ -28,7 +28,7 @@ namespace Melba
         }
         private int _health = 0; ///< Leave at 0 to initialize to HealthMax on _Ready
 
-                                 /// "Relative movement speed of the character"
+        /// "Relative movement speed of the character"
         [Export]
         public int Speed { get; set; } = 50;
 

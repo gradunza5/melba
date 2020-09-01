@@ -2,16 +2,16 @@
 
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://characters/enemies/bubble/bubble.tscn" type="PackedScene" id=2]
-[ext_resource path="res://world/maps/debug_map.tscn" type="PackedScene" id=3]
+[ext_resource path="res://world/maps/grassmap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.cs" type="Script" id=4]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 4 )
 
-[node name="DebugMap" parent="." instance=ExtResource( 3 )]
+[node name="TileMap" parent="." instance=ExtResource( 3 )]
 
-[node name="Bubble" parent="DebugMap" instance=ExtResource( 2 )]
-position = Vector2( 384, 224 )
+[node name="Player" parent="TileMap" instance=ExtResource( 1 )]
+position = Vector2( 176, 200 )
 
-[node name="Player" parent="DebugMap" instance=ExtResource( 1 )]
-position = Vector2( 304, 216 )
+[node name="Bubble" parent="TileMap" instance=ExtResource( 2 )]
+position = Vector2( 272, 176 )

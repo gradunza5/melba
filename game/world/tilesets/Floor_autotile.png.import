@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/walls.png-ea19b752b28e62060cd4bd7d2b696fc9.stex"
+path="res://.import/Floor_autotile.png-0d763412ee0138ed4cde22687f169a7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://world/tilesets/walls.png"
-dest_files=[ "res://.import/walls.png-ea19b752b28e62060cd4bd7d2b696fc9.stex" ]
+source_file="res://world/tilesets/Floor_autotile.png"
+dest_files=[ "res://.import/Floor_autotile.png-0d763412ee0138ed4cde22687f169a7f.stex" ]
 
 [params]
 

@@ -63,8 +63,8 @@
     <Compile Include="characters\enemies\Enemy.cs" />
     <Compile Include="characters\player\Player.cs" />
     <Compile Include="gui\hud\Hud.cs" />
-    <Compile Include="script_templates\new_script.cs" />
     <Compile Include="utility\Vector2Extensions.cs" />
+    <Compile Include="weapons\projectiles\Arrow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
